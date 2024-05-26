@@ -119,7 +119,8 @@ public class BikeSystem {
 
     public static void alterBike() {
         displayAllBikes();
-        System.out.print("Enter the bike ID to change: ");
+        System.out.println("Enter ID (0 to cancel)");
+        System.out.print("> ");
         int bikeID = scanner.nextInt();
         scanner.nextLine();
 
@@ -131,16 +132,12 @@ public class BikeSystem {
             }
         }
 
+        // Ask Attribute Name then ask for new Value
         if (bikeToChange != null) {
-            System.out.println("Choose attribute to alter:");
-            System.out.println("1. Owner");
-            System.out.println("2. Type");
-            System.out.println("3. Serial Number");
-            System.out.println("4. Brake Type");
-            System.out.println("5. Wheel Size");
-            System.out.print("Enter your choice: ");
+            System.out.println("Which Attribute?");
+            System.out.print("> ");
 
-            int attributeChoice = scanner.nextInt();
+            String attributeChoice = scanner.nextLine();
             scanner.nextLine();  // Consume newline
 
             switch (attributeChoice) {
