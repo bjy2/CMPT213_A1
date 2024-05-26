@@ -61,10 +61,4 @@ public class Bike {
         this.wheelSize = wheelSize;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Bike ID: %d, Owner Name: %s, Serial Number: %s, Brake Type: %s, Wheel Size: %d",
-                bikeID, ownerName, serialNumber, brakeType, wheelSize);
-    }
-
 }

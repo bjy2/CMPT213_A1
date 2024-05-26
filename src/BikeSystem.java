@@ -26,7 +26,7 @@ public class BikeSystem {
             System.out.println("4. Change bike attributes");
             System.out.println("5. DEBUG: Dump objects (toString)");
             System.out.println("6. Exit");
-            System.out.print(">");
+            System.out.print("> ");
 
             int choice = scanner.nextInt();
             scanner.nextLine();  // Consume newline
@@ -119,19 +119,19 @@ public class BikeSystem {
 
     public static void alterBike() {
         displayAllBikes();
-        System.out.print("Enter the bike ID to alter: ");
+        System.out.print("Enter the bike ID to change: ");
         int bikeID = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        scanner.nextLine();
 
-        Bike bikeToAlter = null;
+        Bike bikeToChange = null;
         for (Bike bike : bikes) {
             if (bike.getBikeID() == bikeID) {
-                bikeToAlter = bike;
+                bikeToChange = bike;
                 break;
             }
         }
 
-        if (bikeToAlter != null) {
+        if (bikeToChange != null) {
             System.out.println("Choose attribute to alter:");
             System.out.println("1. Owner");
             System.out.println("2. Type");
@@ -147,28 +147,28 @@ public class BikeSystem {
                 case 1:
                     System.out.print("Enter new owner's name: ");
                     String newOwner = scanner.nextLine();
-                    bikeToAlter.setOwnerName(newOwner);
+                    bikeToChange.setOwnerName(newOwner);
                     break;
                 case 2:
                     System.out.print("Enter new bike type: ");
                     String newType = scanner.nextLine();
-                    bikeToAlter.setType(newType);
+                    bikeToChange.setType(newType);
                     break;
                 case 3:
                     System.out.print("Enter new serial number: ");
                     String newSerialNumber = scanner.nextLine();
-                    bikeToAlter.setSerialNumber(newSerialNumber);
+                    bikeToChange.setSerialNumber(newSerialNumber);
                     break;
                 case 4:
                     System.out.print("Enter new brake type: ");
                     String newBrakeType = scanner.nextLine();
-                    bikeToAlter.setBrakeType(newBrakeType);
+                    bikeToChange.setBrakeType(newBrakeType);
                     break;
                 case 5:
                     System.out.print("Enter new wheel size in inches: ");
                     int newWheelSize = scanner.nextInt();
                     scanner.nextLine();  // Consume newline
-                    bikeToAlter.setWheelSize(newWheelSize);
+                    bikeToChange.setWheelSize(newWheelSize);
                     break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
