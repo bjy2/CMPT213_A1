@@ -20,10 +20,10 @@ public class BikeSystem {
             System.out.println("*************\n" +
                                "* Main Menu *\n" +
                                "*************");
-            System.out.println("1. List bikes");
-            System.out.println("2. Add a new bike");
-            System.out.println("3. Remove a bike");
-            System.out.println("4. Change bike attributes");
+            System.out.println("1. List Bikes");
+            System.out.println("2. Add a new Bike");
+            System.out.println("3. Remove a Bike");
+            System.out.println("4. Change Bike attribute");
             System.out.println("5. DEBUG: Dump objects (toString)");
             System.out.println("6. Exit");
             System.out.print("> ");
@@ -48,6 +48,7 @@ public class BikeSystem {
                     displayBikeToString();
                     break;
                 case 6:
+                    System.out.println("BYE!");
                     System.exit(0);
                     break;
                 default:
@@ -60,11 +61,11 @@ public class BikeSystem {
         System.out.println("******************");
         System.out.println("* List of Bikes: *");
         System.out.println("******************");
-        System.out.printf("%-5s %-15s %-10s %-15s %-10s %-5s%n", "ID", "Owner", "Type", "Serial", "Brake", "Wheel Size");
+        System.out.printf("%-5s %-15s %-10s %-15s %-10s %-5s %n", "ID", "Owner,", "Type,", "Serial,", "Brake,", "Wheel Size");
 
         for (Bike bike : bikes) {
             System.out.printf("%-5s %-15s %-10s %-15s %-10s %-5s%n",
-                    bike.getBikeID(), bike.getOwnerName(), bike.getType(), bike.getSerialNumber(), bike.getBrakeType(), bike.getWheelSize());
+                    bike.getBikeID(), bike.getOwnerName()+",", bike.getType()+",", bike.getSerialNumber()+",", bike.getBrakeType()+",", bike.getWheelSize());
         }
     }
 
@@ -88,14 +89,14 @@ public class BikeSystem {
         int bikeID = nextBikeID++;
         bikes.add(new Bike(bikeID, ownerName, type, serialNumber, brakeType, wheelSize));
 
-        System.out.println("Bike added successfully!");
     }
 
     public static void deleteBike() {
         displayAllBikes();
-        System.out.print("Enter the bike ID to delete (or 0 to cancel): ");
+        System.out.println("Enter ID to remove (0 to cancel)");
+        System.out.print("> ");
         int bikeID = scanner.nextInt();
-        scanner.nextLine();  // Consume newline
+        scanner.nextLine();
 
         if (bikeID == 0) {
             return;
@@ -111,7 +112,7 @@ public class BikeSystem {
 
         if (bikeToDelete != null) {
             bikes.remove(bikeToDelete);
-            System.out.println("Bike deleted successfully!");
+            System.out.println("Bike removed successfully!");
         } else {
             System.out.println("Invalid bike ID. Please try again.");
         }
@@ -131,56 +132,62 @@ public class BikeSystem {
                 break;
             }
         }
-
         // Ask Attribute Name then ask for new Value
         if (bikeToChange != null) {
             System.out.println("Which Attribute?");
             System.out.print("> ");
 
             String attributeChoice = scanner.nextLine();
-            scanner.nextLine();  // Consume newline
 
             switch (attributeChoice) {
-                case 1:
-                    System.out.print("Enter new owner's name: ");
+                case "Owner":
+                    System.out.println("New Value: ");
+                    System.out.print("> ");
                     String newOwner = scanner.nextLine();
                     bikeToChange.setOwnerName(newOwner);
                     break;
-                case 2:
-                    System.out.print("Enter new bike type: ");
+                case "Type":
+                    System.out.println("New Value: ");
+                    System.out.print("> ");
                     String newType = scanner.nextLine();
                     bikeToChange.setType(newType);
                     break;
-                case 3:
-                    System.out.print("Enter new serial number: ");
-                    String newSerialNumber = scanner.nextLine();
-                    bikeToChange.setSerialNumber(newSerialNumber);
+                case "Serial":
+                    System.out.println("New Value: ");
+                    System.out.print("> ");
+                    String newSerial = scanner.nextLine();
+                    bikeToChange.setSerialNumber(newSerial);
                     break;
-                case 4:
-                    System.out.print("Enter new brake type: ");
-                    String newBrakeType = scanner.nextLine();
-                    bikeToChange.setBrakeType(newBrakeType);
+                case "Brake":
+                    System.out.println("New Value: ");
+                    System.out.print("> ");
+                    String newBrake = scanner.nextLine();
+                    bikeToChange.setBrakeType(newBrake);
                     break;
-                case 5:
-                    System.out.print("Enter new wheel size in inches: ");
+                case "Wheel Size":
+                    System.out.println("New Value: ");
+                    System.out.print("> ");
                     int newWheelSize = scanner.nextInt();
-                    scanner.nextLine();  // Consume newline
                     bikeToChange.setWheelSize(newWheelSize);
                     break;
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.print("Invalid input. Please try again.");
+                }
             }
-
-            System.out.println("Bike attributes updated successfully!");
-        } else {
-            System.out.println("Invalid bike ID. Please try again.");
+            else {
+                System.out.println("Invalid bike ID. Please try again.");
+            }
         }
-    }
 
     public static void displayBikeToString() {
-        System.out.println("Bikes toString():");
+        System.out.println("All Bike objects:");
         for (Bike bike : bikes) {
+            System.out.print(bike.getBikeID() + ". ");
+            System.out.println(bike.toString());
             System.out.println(bike);
+            //System.out.printf("[ID: %s, Owner:%s, Type:%s, Serial:%s, Brake:%s, Wheel Size:%s]",
+              //      bike.getBikeID(), bike.getOwnerName(), bike.getType(), bike.getSerialNumber(), bike.getBrakeType(),bike.getWheelSize());
+            //System.out.println();
         }
     }
 }
