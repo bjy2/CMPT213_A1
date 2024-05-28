@@ -1,4 +1,4 @@
-import ca.cmpt213_a1.bike.Bike;
+import ca.sfu.cmpt213.as1.Bike;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -181,13 +181,9 @@ public class BikeSystem {
 
     public static void displayBikeToString() {
         System.out.println("All Bike objects:");
-        for (Bike bike : bikes) {
-            System.out.print(bike.getBikeID() + ". ");
-            System.out.println(bike.toString());
-            System.out.println(bike);
-            //System.out.printf("[ID: %s, Owner:%s, Type:%s, Serial:%s, Brake:%s, Wheel Size:%s]",
-              //      bike.getBikeID(), bike.getOwnerName(), bike.getType(), bike.getSerialNumber(), bike.getBrakeType(),bike.getWheelSize());
-            //System.out.println();
+        for (int i = 0; i < bikes.size(); i++) {
+            Bike bike = bikes.get(i);
+            System.out.println((i + 1) + ". " + bike);
         }
     }
 }

@@ -1,4 +1,4 @@
-package ca.cmpt213_a1.bike;
+package ca.sfu.cmpt213.as1;
 
 public class Bike {
     private int bikeID;
@@ -59,6 +59,12 @@ public class Bike {
 
     public void setWheelSize(int wheelSize) {
         this.wheelSize = wheelSize;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s[Id:%d, Owner:%s, Type:%s, Serial:%s, Brake:%s, WheelSize:%d]",
+                getClass().getName(), bikeID, ownerName, type, serialNumber, brakeType, wheelSize);
     }
 
 }
